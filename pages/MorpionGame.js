@@ -1,12 +1,28 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/MorpionGame.module.css";
 import Cellule from "./Cellule";
-
+import { useRouter } from "next/router";
 function MorpionGame() {
   const [game, setGame] = useState(Array(9).fill(""));
   const [isPlay, setisPlay] = useState(true);
   const [winner, setwinner] = useState(null);
   const [hoverPlay, sethoverPlay] = useState(null);
+  const router = useRouter();
+  const [pseudo1, setPseudo1] = useState(router.query.pseudo1);
+  const [pseudo2, setPseudo2] = useState(router.query.pseudo2);
+
+  useEffect(() => {
+    let pseudos = JSON?.parse(localStorage?.getItem("pseudos"));
+
+    if (!pseudos) {
+      router.push("/");
+      return;
+    }
+
+    setPseudo1(pseudos.pseudo1);
+    setPseudo2(pseudos.pseudo2);
+  }, []);
+
   //   if win
   if (winner) {
     alert("The winner is :" + winner);
@@ -95,14 +111,14 @@ function MorpionGame() {
             isPlay ? styles.active : styles.inactive
           }`}
         >
-          Player 1
+          {pseudo1}
         </button>
         <button
           className={`${styles.button} ${
             isPlay ? styles.inactive : styles.active
           }`}
         >
-          Player 2
+          {pseudo2}
         </button>
       </div>
     </div>
