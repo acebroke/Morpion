@@ -28,10 +28,7 @@ function HomePage() {
             pseudo2: pseudo2,
           })
         );
-        router.push({
-          pathname: "/MorpionGame",
-          query: { pseudo1, pseudo2 },
-        });
+        router.push("/MorpionGame");
       }
     }
 

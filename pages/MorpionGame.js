@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../styles/MorpionGame.module.css";
 import Cellule from "./Cellule";
 import { useRouter } from "next/router";
+import Timer from "./Timer";
 function MorpionGame() {
   const [game, setGame] = useState(Array(9).fill(""));
   const [isPlay, setisPlay] = useState(true);
@@ -10,6 +11,7 @@ function MorpionGame() {
   const router = useRouter();
   const [pseudo1, setPseudo1] = useState(router.query.pseudo1);
   const [pseudo2, setPseudo2] = useState(router.query.pseudo2);
+  const [count, setcount] = useState(5);
 
   useEffect(() => {
     let pseudos = JSON?.parse(localStorage?.getItem("pseudos"));
@@ -33,6 +35,7 @@ function MorpionGame() {
     setwinner(null);
     setisPlay(true);
     setGame(Array(9).fill(""));
+    // need reset timer
   }
 
   function play(value, id) {
@@ -49,6 +52,8 @@ function MorpionGame() {
 
     // Change the player
     setisPlay(!isPlay);
+    // reset count after click
+    setcount(5);
   }
 
   useEffect(() => checkWinner(game), [isPlay]);
@@ -121,6 +126,7 @@ function MorpionGame() {
           {pseudo2}
         </button>
       </div>
+      <Timer changePlayer={setisPlay} count={count} updateCount={setcount} />
     </div>
   );
 }
