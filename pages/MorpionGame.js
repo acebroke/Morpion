@@ -9,20 +9,21 @@ function MorpionGame() {
   const [winner, setwinner] = useState(null);
   const [hoverPlay, sethoverPlay] = useState(null);
   const router = useRouter();
-  const [pseudo1, setPseudo1] = useState(router.query.pseudo1);
-  const [pseudo2, setPseudo2] = useState(router.query.pseudo2);
-  const [count, setcount] = useState(5);
-
+  const [pseudo1, setPseudo1] = useState("");
+  const [pseudo2, setPseudo2] = useState("");
+  const [count, setcount] = useState(null);
+  const [countGame, setcountGame] = useState(null);
   useEffect(() => {
-    let pseudos = JSON?.parse(localStorage?.getItem("pseudos"));
-
-    if (!pseudos) {
+    let play = JSON?.parse(localStorage?.getItem("play"));
+    if (!play) {
       router.push("/");
       return;
     }
 
-    setPseudo1(pseudos.pseudo1);
-    setPseudo2(pseudos.pseudo2);
+    setPseudo1(play.pseudo1);
+    setPseudo2(play.pseudo2);
+    setcount(play.time);
+    setcountGame(play.plays);
   }, []);
 
   //   if win
@@ -39,6 +40,7 @@ function MorpionGame() {
   }
 
   function play(value, id) {
+    let play = JSON?.parse(localStorage?.getItem("play"));
     // Check if can play
     if (value) return;
 
@@ -53,7 +55,7 @@ function MorpionGame() {
     // Change the player
     setisPlay(!isPlay);
     // reset count after click
-    setcount(5);
+    setcount(play.time);
   }
 
   useEffect(() => checkWinner(game), [isPlay]);
@@ -118,6 +120,7 @@ function MorpionGame() {
         >
           {pseudo1}
         </button>
+        <p>0-0</p>
         <button
           className={`${styles.button} ${
             isPlay ? styles.inactive : styles.active

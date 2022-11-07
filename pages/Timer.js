@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Timer.module.css";
 
 function Timer({ reset, changePlayer, setcount, count, updateCount }) {
-
-
   useEffect(() => {
+    let { time, plays } = JSON.parse(localStorage.getItem("play"));
     const counter = setInterval(() => {
       updateCount((count) => {
         if (count > 0) {
           return count - 1;
         } else {
           changePlayer((val) => !val);
-          return (count = 5);
+          return (count = time);
         }
       });
     }, 1000);

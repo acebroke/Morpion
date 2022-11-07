@@ -1,3 +1,59 @@
 .settings {
-  border: 4px solid green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 40%;
+  padding: 15px;
+  background-color: rgb(145, 66, 66);
+  border-radius: 7px;
+  color: white;
+  position: absolute;
+}
+
+.settings > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.button {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  color: white;
+  color: #252525;
+}
+.title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.text {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+.buttonSubmit {
+  margin: 10px;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: #252525;
+}
+
+.button.active {
+  background-color: #252525;
+  color: #fff;
+}
+
+.button.inactive {
+  background-color: #fff;
+  color: #252525;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
+import Settings from "./Settings";
 
 function HomePage() {
   const [pseudo1, setPseudo1] = useState("");
@@ -8,7 +9,7 @@ function HomePage() {
   const [writePseduo, setwritePseduo] = useState(false);
   const [versus, setversus] = useState("player");
   const router = useRouter();
-
+  const [showModal, setShowModal] = useState(false);
   function submit() {
     // First Pseudo1
     if (!writePseduo) {
@@ -22,13 +23,13 @@ function HomePage() {
         return;
       } else {
         localStorage.setItem(
-          "pseudos",
+          "play",
           JSON.stringify({
             pseudo1: pseudo1,
             pseudo2: pseudo2,
           })
         );
-        router.push("/MorpionGame");
+        setShowModal(true);
       }
     }
 
@@ -100,6 +101,7 @@ function HomePage() {
           </>
         )}
       </div>
+      {showModal && <Settings />}
     </div>
   );
 }
