@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Timer.module.css";
 
 function Timer({ reset, changePlayer, setcount, count, updateCount }) {
+
+
   useEffect(() => {
     const counter = setInterval(() => {
       updateCount((count) => {

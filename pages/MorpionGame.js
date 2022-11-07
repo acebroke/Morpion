@@ -27,8 +27,8 @@ function MorpionGame() {
 
   //   if win
   if (winner) {
-    alert("The winner is :" + winner);
     resetGame();
+    router.push("/");
   }
 
   function resetGame() {
