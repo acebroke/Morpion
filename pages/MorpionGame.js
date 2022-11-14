@@ -3,6 +3,7 @@ import styles from "../styles/MorpionGame.module.css";
 import Cellule from "./Cellule";
 import { useRouter } from "next/router";
 import Timer from "./Timer";
+import WinnerModal from "./WinnerModal";
 function MorpionGame() {
   const [game, setGame] = useState(Array(9).fill(""));
   const [isPlay, setisPlay] = useState(true);
@@ -13,6 +14,7 @@ function MorpionGame() {
   const [pseudo2, setPseudo2] = useState("");
   const [count, setcount] = useState(null);
   const [countGame, setcountGame] = useState(null);
+  
   useEffect(() => {
     let play = JSON?.parse(localStorage?.getItem("play"));
     if (!play) {
@@ -26,11 +28,6 @@ function MorpionGame() {
     setcountGame(play.plays);
   }, []);
 
-  //   if win
-  if (winner) {
-    resetGame();
-    router.push("/");
-  }
 
   function resetGame() {
     setwinner(null);
@@ -129,7 +126,11 @@ function MorpionGame() {
           {pseudo2}
         </button>
       </div>
-      <Timer changePlayer={setisPlay} count={count} updateCount={setcount} />
+      {!winner ? (
+        <Timer changePlayer={setisPlay} count={count} updateCount={setcount} />
+      ) : (
+        <WinnerModal resetGame={resetGame} />
+      )}
     </div>
   );
 }

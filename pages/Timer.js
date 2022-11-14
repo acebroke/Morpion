@@ -17,7 +17,9 @@ function Timer({ reset, changePlayer, setcount, count, updateCount }) {
     return () => clearInterval(counter);
   }, []);
 
-  return <div className={styles.timer}>Mon compteur : {count}</div>;
+  return <div className={styles.timer}>Mon compteur : {count}
+    
+  </div>;
 }
 
 export default Timer;
