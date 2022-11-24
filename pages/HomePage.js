@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Settings from "./Settings";
@@ -13,6 +13,8 @@ function HomePage() {
   const [versus, setversus] = useState("player");
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+
+
   function submit() {
     // First Pseudo1
     if (!writePseduo) {

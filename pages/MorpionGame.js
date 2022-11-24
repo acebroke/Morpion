@@ -4,12 +4,13 @@ import Cellule from "./Cellule";
 import { useRouter } from "next/router";
 import Timer from "./Timer";
 import WinnerModal from "./WinnerModal";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { updateScoreGamePlayer2 } from "../reducers/game";
 function MorpionGame() {
   const { pseudo1, pseudo2, time, plays } = useSelector(
     (state) => state.game.value
   );
+  const dispatch = useDispatch();
   const [game, setGame] = useState(Array(9).fill(""));
   const [isPlay, setisPlay] = useState(true);
   const [winner, setwinner] = useState(null);
@@ -64,6 +65,7 @@ function MorpionGame() {
         check.every((el) => el === "circle") ||
         check.every((el) => el === "cross")
       ) {
+        dispatch(updateScoreGamePlayer2(check[0]));
         setwinner(check[0]);
       }
     });
@@ -103,7 +105,9 @@ function MorpionGame() {
         >
           {pseudo1.name}
         </button>
-        <p>0-0</p>
+        <p>
+          {pseudo1.score}-{pseudo2.score}
+        </p>
         <button
           className={`${styles.button} ${
             isPlay ? styles.inactive : styles.active

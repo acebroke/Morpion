@@ -9,7 +9,7 @@
   border-radius: 7px;
   color: white;
   width: 50%;
-  height: 50%;
+  min-height: 50%;
 }
 .backgroundModal {
   width: 100%;
@@ -38,6 +38,21 @@
   margin: 0 3rem;
 }
 
+.winnerIsIt {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.winnerChoice {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: auto;
+}
 @keyframes modal {
   0% {
     opacity: 0;
