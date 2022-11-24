@@ -14,20 +14,21 @@ function MorpionGame() {
   const [pseudo2, setPseudo2] = useState("");
   const [count, setcount] = useState(null);
   const [countGame, setcountGame] = useState(null);
-  
+
   useEffect(() => {
-    let play = JSON?.parse(localStorage?.getItem("play"));
+    let { pseudo1, pseudo2, time, plays } = JSON?.parse(
+      localStorage?.getItem("play")
+    );
     if (!play) {
       router.push("/");
       return;
     }
 
-    setPseudo1(play.pseudo1);
-    setPseudo2(play.pseudo2);
-    setcount(play.time);
-    setcountGame(play.plays);
+    setPseudo1(pseudo1.name);
+    setPseudo2(pseudo2.name);
+    setcount(time);
+    setcountGame(plays);
   }, []);
-
 
   function resetGame() {
     setwinner(null);
@@ -129,7 +130,7 @@ function MorpionGame() {
       {!winner ? (
         <Timer changePlayer={setisPlay} count={count} updateCount={setcount} />
       ) : (
-        <WinnerModal resetGame={resetGame} />
+        <WinnerModal resetGame={resetGame} victory={winner} />
       )}
     </div>
   );

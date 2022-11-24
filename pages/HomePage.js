@@ -25,8 +25,11 @@ function HomePage() {
         localStorage.setItem(
           "play",
           JSON.stringify({
-            pseudo1: pseudo1,
-            pseudo2: pseudo2,
+            pseudo1: {
+              name: pseudo1,
+              score: 0,
+            },
+            pseudo2: { name: pseudo2, score: 0 },
           })
         );
         setShowModal(true);

@@ -18,4 +18,31 @@
   position: absolute;
   display: grid;
   place-items: center;
+  animation: modal 0.4s forwards;
+}
+.button {
+  width: 30%;
+  padding: 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  color: rgb(145, 66, 66);
+  border: none;
+  background-color: #fff;
+}
+.score {
+  font-style: italic;
+  font-size: 4rem;
+}
+.pseudo {
+  color: #f0f0f0;
+  margin: 0 3rem;
+}
+
+@keyframes modal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
