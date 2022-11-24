@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Timer.module.css";
-
+import { useSelector } from "react-redux";
 function Timer({ reset, changePlayer, setcount, count, updateCount }) {
+  
+  const { time } = useSelector((state) => state.game.value);
+
   useEffect(() => {
-    let { time, plays } = JSON.parse(localStorage.getItem("play"));
     const counter = setInterval(() => {
       updateCount((count) => {
         if (count > 0) {
@@ -17,9 +19,7 @@ function Timer({ reset, changePlayer, setcount, count, updateCount }) {
     return () => clearInterval(counter);
   }, []);
 
-  return <div className={styles.timer}>Mon compteur : {count}
-    
-  </div>;
+  return <div className={styles.timer}>Mon compteur : {count}</div>;
 }
 
 export default Timer;

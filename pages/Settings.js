@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/Seetings.module.css";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { addPreferencesGamePlayer2 } from "../reducers/game";
 function Settings() {
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const [time, setTime] = useState(3);
   const [plays, setPlays] = useState(1);
 
   function validPreferences() {
-    let play = JSON.parse(localStorage.getItem("play"));
-    play.time = time;
-    play.plays = plays;
-    localStorage.setItem("play", JSON.stringify(play));
-
+    dispatch(addPreferencesGamePlayer2({ time, plays }));
     router.push("/MorpionGame");
   }
 

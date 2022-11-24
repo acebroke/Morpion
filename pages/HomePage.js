@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Settings from "./Settings";
+import { createGamePlayer2 } from "../reducers/game";
+import { useDispatch } from "react-redux";
 
 function HomePage() {
+  const dispatch = useDispatch();
   const [pseudo1, setPseudo1] = useState("");
   const [pseudo2, setPseudo2] = useState("");
   const [writePseduo, setwritePseduo] = useState(false);
@@ -22,9 +25,8 @@ function HomePage() {
       if (!pseudo1.trim() || !pseudo2.trim()) {
         return;
       } else {
-        localStorage.setItem(
-          "play",
-          JSON.stringify({
+        dispatch(
+          createGamePlayer2({
             pseudo1: {
               name: pseudo1,
               score: 0,
@@ -32,6 +34,7 @@ function HomePage() {
             pseudo2: { name: pseudo2, score: 0 },
           })
         );
+
         setShowModal(true);
       }
     }

@@ -4,31 +4,18 @@ import Cellule from "./Cellule";
 import { useRouter } from "next/router";
 import Timer from "./Timer";
 import WinnerModal from "./WinnerModal";
+import { useSelector } from "react-redux";
+
 function MorpionGame() {
+  const { pseudo1, pseudo2, time, plays } = useSelector(
+    (state) => state.game.value
+  );
   const [game, setGame] = useState(Array(9).fill(""));
   const [isPlay, setisPlay] = useState(true);
   const [winner, setwinner] = useState(null);
   const [hoverPlay, sethoverPlay] = useState(null);
   const router = useRouter();
-  const [pseudo1, setPseudo1] = useState("");
-  const [pseudo2, setPseudo2] = useState("");
-  const [count, setcount] = useState(null);
-  const [countGame, setcountGame] = useState(null);
-
-  useEffect(() => {
-    let { pseudo1, pseudo2, time, plays } = JSON?.parse(
-      localStorage?.getItem("play")
-    );
-    if (!play) {
-      router.push("/");
-      return;
-    }
-
-    setPseudo1(pseudo1.name);
-    setPseudo2(pseudo2.name);
-    setcount(time);
-    setcountGame(plays);
-  }, []);
+  const [count, setcount] = useState(time);
 
   function resetGame() {
     setwinner(null);
@@ -38,8 +25,6 @@ function MorpionGame() {
   }
 
   function play(value, id) {
-    let play = JSON?.parse(localStorage?.getItem("play"));
-    // Check if can play
     if (value) return;
 
     // play
@@ -53,7 +38,7 @@ function MorpionGame() {
     // Change the player
     setisPlay(!isPlay);
     // reset count after click
-    setcount(play.time);
+    setcount(time);
   }
 
   useEffect(() => checkWinner(game), [isPlay]);
@@ -116,7 +101,7 @@ function MorpionGame() {
             isPlay ? styles.active : styles.inactive
           }`}
         >
-          {pseudo1}
+          {pseudo1.name}
         </button>
         <p>0-0</p>
         <button
@@ -124,7 +109,7 @@ function MorpionGame() {
             isPlay ? styles.inactive : styles.active
           }`}
         >
-          {pseudo2}
+          {pseudo2.name}
         </button>
       </div>
       {!winner ? (

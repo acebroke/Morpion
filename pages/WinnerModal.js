@@ -4,7 +4,6 @@ import styles from "../styles/WinnerModal.module.css";
 function WinnerModal({ resetGame, victory }) {
   const [winner, setWinner] = useState(false);
 
-  // const [pseudo1]
 
   useEffect(() => {}, []);
 
