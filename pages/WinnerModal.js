@@ -3,7 +3,7 @@ import styles from "../styles/WinnerModal.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { FiRefreshCw, FiHome } from "react-icons/fi";
 import { useRouter } from "next/router";
-import { restartGamePlayer2 } from "../reducers/game";
+import { restartGame } from "../reducers/game";
 function WinnerModal({ resetGame, victory }) {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function WinnerModal({ resetGame, victory }) {
           <button
             className={styles.button}
             onClick={() => {
-              dispatch(restartGamePlayer2());
+              dispatch(restartGame());
               resetGame();
             }}
           >
@@ -57,7 +57,6 @@ function WinnerModal({ resetGame, victory }) {
             className={styles.button}
             onClick={() => {
               router.push("/");
-              // dispatch(cleanGamePlayer2())
             }}
           >
             Go Home <FiHome />{" "}

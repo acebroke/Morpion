@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/Seetings.module.css";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { addPreferencesGamePlayer2 } from "../reducers/game";
+import { addPreferencesGame } from "../reducers/game";
 function Settings() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function Settings() {
   const [plays, setPlays] = useState(1);
 
   function validPreferences() {
-    dispatch(addPreferencesGamePlayer2({ time, plays }));
+    dispatch(addPreferencesGame({ time, plays }));
     router.push("/MorpionGame");
   }
 

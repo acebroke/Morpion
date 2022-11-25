@@ -7,20 +7,20 @@ export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    createGamePlayer2: (state, action) => {
+    createGame: (state, action) => {
       state.value = action.payload;
     },
-    addPreferencesGamePlayer2: (state, action) => {
+    addPreferencesGame: (state, action) => {
       state.value = { ...state.value, ...action.payload };
     },
-    updateScoreGamePlayer2: (state, action) => {
+    updateScoreGame: (state, action) => {
       if (action.payload === "circle") {
         state.value.pseudo1.score += 1;
       } else {
         state.value.pseudo2.score += 1;
       }
     },
-    restartGamePlayer2: (state) => {
+    restartGame: (state) => {
       state.value.pseudo1.score = 0;
       state.value.pseudo2.score = 0;
     },
@@ -28,11 +28,7 @@ export const gameSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  createGamePlayer2,
-  addPreferencesGamePlayer2,
-  updateScoreGamePlayer2,
-  restartGamePlayer2,
-} = gameSlice.actions;
+export const { createGame, addPreferencesGame, updateScoreGame, restartGame } =
+  gameSlice.actions;
 
 export default gameSlice.reducer;

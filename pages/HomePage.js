@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Settings from "./Settings";
-import { createGamePlayer2 } from "../reducers/game";
+import { createGame } from "../reducers/game";
 import { useDispatch } from "react-redux";
 
 function HomePage() {
@@ -13,7 +13,6 @@ function HomePage() {
   const [versus, setversus] = useState("player");
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
-
 
   function submit() {
     // First Pseudo1
@@ -28,12 +27,13 @@ function HomePage() {
         return;
       } else {
         dispatch(
-          createGamePlayer2({
+          createGame({
             pseudo1: {
               name: pseudo1,
               score: 0,
             },
             pseudo2: { name: pseudo2, score: 0 },
+            type: versus,
           })
         );
 
@@ -46,6 +46,17 @@ function HomePage() {
       if (!pseudo1.trim()) {
         return;
       }
+      dispatch(
+        createGame({
+          pseudo1: {
+            name: pseudo1,
+            score: 0,
+          },
+          pseudo2: { name: "IA", score: 0 },
+          type: versus,
+        })
+      );
+      setShowModal(true);
     }
   }
 
